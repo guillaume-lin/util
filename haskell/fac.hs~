@@ -1,0 +1,11 @@
+-- fac.hs
+Module Main where
+import Data.Char
+double x y =
+ if x=2
+x + y
+main = do
+     print(  double 3 4)
+
+
+
