@@ -1,3 +1,40 @@
 <section>
-  <h2>hanoi, from Phoeniasdf </h2>
+ <button onclick="location.reload();">刷新页面</button>
+  <h2>小明在做一道加法题时,不小心把被加数十位数上的<%=elem(@t,0) %> 看成 <%=elem(@t,2) %>, 把个位数上的 <%=elem(@t,1) %> 看成 <%=elem(@t,3) %> 得到的结果是 <%=elem(@t,4) %> , 请问这道加法题的正确答案是几? </h2>
+  <button id="myButton">点击查看答案</button>
+  <div id="myDiv">正确答案是 <%=elem(@t,5) %></div>
+  
+  <h2>小明在做一道减法题时,不小心把减数十位数上的<%=elem(@t2,0) %> 看成 <%=elem(@t2,2) %>, 把个位数上的 <%=elem(@t2,1) %> 看成 <%=elem(@t2,3) %> 得到的结果是 <%=elem(@t2,4) %> , 请问这道减法题的正确答案是几? </h2>
+  <button id="myButton1">点击查看答案</button>
+  <div id="myDiv1">正确答案是 <%=elem(@t2,5) %></div>
+
+  
+  <script text="javascript">
+    // 获取div元素
+    var div = document.getElementById("myDiv");
+
+    // 隐藏div元素
+    div.style.display = "none";
+    var btn = document.getElementById("myButton")
+    btn.onclick = function(){
+      console.log('click show')
+      var div = document.getElementById("myDiv");
+      // 显示div元素
+      div.style.display = "block";
+    }
+
+        // 获取div元素
+    var div = document.getElementById("myDiv1");
+
+    // 隐藏div元素
+    div.style.display = "none";
+    var btn = document.getElementById("myButton1")
+    btn.onclick = function(){
+      console.log('click show')
+      var div = document.getElementById("myDiv1");
+      // 显示div元素
+      div.style.display = "block";
+    }
+
+  </script>
 </section>

@@ -20,6 +20,7 @@ defmodule HelloWeb.Router do
     get "/", PageController, :home
     get "/hello", HelloController, :index
     get "/hanoi", HanoiController, :index
+    get "/hanoi/values", HanoiController, :values
   end
   scope "/", HelloWeb do
     pipe_through :browser
