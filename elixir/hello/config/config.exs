@@ -6,7 +6,7 @@
 
 # General application configuration
 import Config
-
+IO.puts("in config.exs")
 config :hello,
   ecto_repos: [Hello.Repo],
   generators: [timestamp_type: :utc_datetime]

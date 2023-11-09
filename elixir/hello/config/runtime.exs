@@ -19,7 +19,9 @@ import Config
 if System.get_env("PHX_SERVER") do
   config :hello, HelloWeb.Endpoint, server: true
 end
-
+IO.puts("in runtime.exs")
+IO.puts(System.get_env("PHX_SERVER"))
+IO.puts(config_env())
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||

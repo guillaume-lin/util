@@ -1,5 +1,6 @@
 import Config
 
+IO.puts("in test.exs ...")
 # Configure your database
 #
 # The MIX_TEST_PARTITION environment variable can be used

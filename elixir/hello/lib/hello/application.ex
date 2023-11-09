@@ -7,6 +7,7 @@ defmodule Hello.Application do
 
   @impl true
   def start(_type, _args) do
+    IO.puts("application start")
     children = [
       HelloWeb.Telemetry,
       Hello.Repo,
@@ -17,7 +18,8 @@ defmodule Hello.Application do
       # Start a worker by calling: Hello.Worker.start_link(arg)
       # {Hello.Worker, arg},
       # Start to serve requests, typically the last entry
-      HelloWeb.Endpoint
+      HelloWeb.Endpoint,
+      {Task, fn -> KVServer.accept(4040) end}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

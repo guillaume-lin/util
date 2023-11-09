@@ -1,5 +1,6 @@
 import Config
 
+IO.puts("in dev.exs ...")
 # Configure your database
 config :hello, Hello.Repo,
   username: "phoenix",
