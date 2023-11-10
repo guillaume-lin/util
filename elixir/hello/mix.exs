@@ -33,6 +33,7 @@ defmodule Hello.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 3.0"},
+      {:req, "~> 0.4.0"},
       {:luerl, "~>1.0"},
       {:phoenix, "~> 1.7.9"},
       {:phoenix_ecto, "~> 4.4"},
