@@ -1,0 +1,8 @@
+<.header>
+  Edit Question template <%= @question_template.id %>
+  <:subtitle>Use this form to manage question_template records in your database.</:subtitle>
+</.header>
+
+<.question_template_form changeset={@changeset} action={~p"/question_templates/#{@question_template}"} />
+
+<.back navigate={~p"/question_templates"}>Back to question_templates</.back>

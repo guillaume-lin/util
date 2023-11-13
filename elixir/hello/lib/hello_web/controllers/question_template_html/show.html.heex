@@ -1,0 +1,16 @@
+<.header>
+  Question template <%= @question_template.id %>
+  <:subtitle>This is a question_template record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/question_templates/#{@question_template}/edit"}>
+      <.button>Edit question_template</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Tmpl"><%= @question_template.tmpl %></:item>
+  <:item title="Formula"><%= @question_template.formula %></:item>
+</.list>
+
+<.back navigate={~p"/question_templates"}>Back to question_templates</.back>

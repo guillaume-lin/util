@@ -3,6 +3,8 @@ defmodule HelloWeb.Router do
 
   import HelloWeb.UserAuth
 
+
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -24,6 +26,7 @@ defmodule HelloWeb.Router do
     get "/hello", HelloController, :index
     get "/hanoi", HanoiController, :index
     get "/hanoi/values", HanoiController, :values
+    resources "/question_templates", QuestionTemplateController
   end
   scope "/", HelloWeb do
     pipe_through :browser

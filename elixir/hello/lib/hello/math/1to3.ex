@@ -7,6 +7,7 @@ defmodule One2Three do
   def generate_add(a,b,c,d,yyy) do
     m = yyy - (c*10+d)
     xxx = m + (a*10+b)
+    xxx
   end
 
   #
@@ -16,6 +17,7 @@ defmodule One2Three do
   def generate_sub(a,b,c,d,yyy) do
     m = yyy + (c*10+d)
     xxx = m - (a*10+b)
+    xxx
   end
 
   def generate_a_sub() do
