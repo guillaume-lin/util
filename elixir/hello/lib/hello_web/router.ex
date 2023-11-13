@@ -30,6 +30,10 @@ defmodule HelloWeb.Router do
   end
   scope "/", HelloWeb do
     pipe_through :browser
+    resources "/papers", PaperController
+  end
+  scope "/", HelloWeb do
+    pipe_through :browser
     live "/thermostat", ThermostatLive
   end
 

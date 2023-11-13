@@ -1,0 +1,15 @@
+<.header>
+  Paper <%= @paper.id %>
+  <:subtitle>This is a paper record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/papers/#{@paper}/edit"}>
+      <.button>Edit paper</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Question tmpl"><%= @paper.question_tmpl_id %></:item>
+</.list>
+
+<.back navigate={~p"/papers"}>Back to papers</.back>

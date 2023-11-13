@@ -1,0 +1,23 @@
+<.header>
+  Listing Papers
+  <:actions>
+    <.link href={~p"/papers/new"}>
+      <.button>New Paper</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="papers" rows={@papers} row_click={&JS.navigate(~p"/papers/#{&1}")}>
+  <:col :let={paper} label="Question tmpl"><%= paper.question_tmpl_id %></:col>
+  <:action :let={paper}>
+    <div class="sr-only">
+      <.link navigate={~p"/papers/#{paper}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/papers/#{paper}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={paper}>
+    <.link href={~p"/papers/#{paper}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
