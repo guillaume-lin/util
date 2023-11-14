@@ -5,6 +5,9 @@ defmodule HelloWeb.HanoiController do
   use HelloWeb, :controller
 
   def index(conn, _params) do
+    static_dir = :code.priv_dir(:hello) |> Path.join("static")
+    IO.puts(static_dir)
+
     IO.puts("hello hanoi")
     Hello.Hanoi.hanoi()
     t = One2Three.generate_a_add()

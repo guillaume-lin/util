@@ -13,6 +13,17 @@ defmodule HelloWeb.Endpoint do
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
+
+  # in your endpoint.ex
+  # configure the path to your application static assets in :at
+  # the path must end with `/kaffy`
+  plug Plug.Static,
+    at: "/kaffy", # or "/path/to/your/static/kaffy"
+    from: {:kaffy, "/priv/static"},
+    gzip: false,
+    only: ~w(assets)
+
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phx.digest
@@ -63,5 +74,6 @@ defmodule HelloWeb.Endpoint do
   socket "/socket", HelloWeb.UserSocket,
     websocket: true,
     longpoll: false
+
 
 end

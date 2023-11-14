@@ -96,4 +96,18 @@ defmodule HelloWeb.Router do
       live "/users/confirm", UserConfirmationInstructionsLive, :new
     end
   end
+
+  #
+  #  Kaffy
+  #
+  # in your router.ex
+  use Kaffy.Routes,
+    scope: "/admin", pipe_through: [ ]
+  # :scope defaults to "/admin"
+  # :pipe_through defaults to kaffy's [:kaffy_browser]
+  # when providing pipelines, they will be added after :kaffy_browser
+  # so the actual pipe_through for the previous line is:
+  # [:kaffy_browser, :some_plug, :authenticate]
+
+
 end

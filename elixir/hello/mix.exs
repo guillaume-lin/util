@@ -33,8 +33,9 @@ defmodule Hello.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 3.0"},
+      {:kaffy, "~> 0.10.2"},        # for admin
       {:req, "~> 0.4.0"},
-      {:luerl, "~>1.0"},
+      {:luerl, "~>1.0"},            # for lua
       {:phoenix, "~> 1.7.9"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.10"},
@@ -70,7 +71,7 @@ defmodule Hello.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind default", "esbuild default"],
+      "assets.build": ["esbuild default", "tailwind default" ],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
     ]
   end

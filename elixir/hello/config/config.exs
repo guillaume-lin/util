@@ -7,6 +7,8 @@
 # General application configuration
 import Config
 IO.puts("in config.exs")
+
+
 config :hello,
   ecto_repos: [Hello.Repo],
   generators: [timestamp_type: :utc_datetime]
@@ -43,7 +45,7 @@ config :esbuild,
 
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "3.3.2",
+  version: "3.3.5",
   default: [
     args: ~w(
       --config=tailwind.config.js
@@ -60,6 +62,28 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+#
+# in your config/config.exs
+# config kaffy
+#
+config :kaffy,
+  # required keys
+  otp_app: :hello, # required
+  ecto_repo: Hello.Repo, # required
+  router: HelloWeb.Router, # required
+  # optional keys
+  admin_title: "My Little App",
+  #admin_logo: [
+  #  url: "https://example.com/img/logo.png",
+  #  style: "width:200px;height:66px;"
+  #],
+  #admin_logo_mini: "/images/logo-mini.png",
+  hide_dashboard: false,
+  home_page: [kaffy: :dashboard],  # [schema: [:accounts, :user]],
+  enable_context_dashboards: true, # since v0.10.0
+  admin_footer: "Kaffy &copy; 2023" # since v0.10.0
+
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
