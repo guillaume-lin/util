@@ -11,6 +11,17 @@ config :hello, Hello.Repo,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
+config :hello, Hello.SecondaryRepo,
+  username: "mall_read",
+  password: "Mall_read@389",
+  hostname: "10.1.208.101",
+  port: 3307,
+  database: "b2cshop_cloud_mall",
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 100
+
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #

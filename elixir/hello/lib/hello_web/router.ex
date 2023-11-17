@@ -26,6 +26,7 @@ defmodule HelloWeb.Router do
     get "/hello", HelloController, :index
     get "/hanoi", HanoiController, :index
     get "/hanoi/values", HanoiController, :values
+    get "/search", SearchController, :search
     resources "/question_templates", QuestionTemplateController
   end
   scope "/", HelloWeb do

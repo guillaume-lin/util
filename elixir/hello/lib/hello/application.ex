@@ -11,6 +11,7 @@ defmodule Hello.Application do
     children = [
       HelloWeb.Telemetry,
       Hello.Repo,
+      Hello.SecondaryRepo,
       {DNSCluster, query: Application.get_env(:hello, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Hello.PubSub},
       # Start the Finch HTTP client for sending emails
