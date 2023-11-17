@@ -41,11 +41,15 @@ defmodule Hello.Question.QuestionTemplate do
     }
   end
 
-  @doc  insert document
+  @doc """
+  insert document
+  """
   def inject_document do
     QuestionTemplate |> Hello.Repo.all() |> ExTypesense.index_multiple_documents()
   end
-  @doc search
+  @doc """
+  search
+  """
   def search_document(word) do
     params = %{q: word, query_by: "tmpl"}
     ExTypesense.search("quetion_templates",params)
