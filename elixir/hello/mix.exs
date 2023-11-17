@@ -33,8 +33,9 @@ defmodule Hello.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 3.0"},
+      {:ex_typesense, "~> 0.3"},  # for typesense
       {:kaffy, "~> 0.10.2"},        # for admin
-      {:req, "~> 0.4.0"},
+      {:req, "~> 0.3.9"},
       {:luerl, "~>1.0"},            # for lua
       {:phoenix, "~> 1.7.9"},
       {:phoenix_ecto, "~> 4.4"},

@@ -64,6 +64,14 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 #
+# typesense
+#
+config :ex_typesense,
+  api_key: "xyz",
+  host: "10.1.208.101",
+  port: 8108, # 443
+  scheme: "http"  # "https"
+#
 # in your config/config.exs
 # config kaffy
 #
