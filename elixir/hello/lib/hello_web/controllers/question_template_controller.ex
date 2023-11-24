@@ -60,3 +60,4 @@ defmodule HelloWeb.QuestionTemplateController do
     |> redirect(to: ~p"/question_templates")
   end
 end
+

@@ -10,7 +10,7 @@ defmodule Hello.Question.QuestionTemplate do
   end
 
   #
-  # 插入数据时使用该necoder进行映射
+  # 插入数据时使用该encoder进行映射
   #
   defimpl Jason.Encoder, for: __MODULE__ do
     def encode(value, opts) do
