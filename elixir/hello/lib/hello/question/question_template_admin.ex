@@ -3,8 +3,8 @@ defmodule Hello.Question.QuestionTemplateAdmin do
   def form_fields(_) do
     [
       id: nil,
-      tmpl: %{type: :textarea, rows: 4},
-      formula: %{type: :textarea, rows: 4}
+      tmpl: %{type: :textarea, rows: 4, name: "模板"},
+      formula: %{type: :textarea, rows: 15}
     ]
   end
 

@@ -1,16 +1,21 @@
 <section>
  <button onclick="location.reload();">刷新页面</button>
+  <%= for q <- 0..(length(@questions)-1) do %>
+
   <div>
-  1
-  <%=@params["tmpl"] %>
-  2
+  <%=elem(Enum.at(@questions,q),0) %>
   </div>
-  <button id="myButton">点击查看答案</button>
-  <div id="myDiv">正确答案是 <%=Enum.at(@result,length(@result)-1) %></div>
-  
-  
-  
-  <script text="javascript">
+  <br>
+  <br>
+  <br>
+  <br>
+  <!-- button id="myButton">点击查看答案</button -->
+  <% result = elem(Enum.at(@questions,q),1)%>
+  <!-- div id="myDiv">正确答案是 <%= Enum.at(result,length(result)-1) %></div -->
+  <div>
+  <h1></h1>
+  </div>
+   <script text="javascript">
 
     // 获取div元素
     var div = document.getElementById("myDiv");
@@ -25,4 +30,5 @@
       div.style.display = "block";
     }
   </script>
+  <% end %>
 </section>

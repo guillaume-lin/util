@@ -3,9 +3,9 @@ import Config
 IO.puts("in dev.exs ...")
 # Configure your database
 config :hello, Hello.Repo,
-  username: "phoenix",
-  password: "phoenix",
-  hostname: "10.1.215.237",
+  username: "root", # "phoenix",
+  password: "123456", #"phoenix",
+  hostname: "127.0.0.1", # "10.1.215.237",
   database: "hello_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
@@ -31,7 +31,7 @@ config :hello, Hello.SecondaryRepo,
 config :hello, HelloWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {10, 1, 215, 237}, port: 4000],
+  http: [ip: {0,0,0,0}, port: 4000], # [ip: {10, 1, 215, 237}, port: 4000],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,

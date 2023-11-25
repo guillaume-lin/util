@@ -7,9 +7,9 @@ defmodule Hello.Hanoi do
     hanoi game
     move(from,via,to,n)
     """
-    def hanoi() do
+    def hanoi(n) do
         IO.puts("hanoi,haha")
-        move("A","B","C",3)
+        move("A","B","C",n)
     end
 
 
