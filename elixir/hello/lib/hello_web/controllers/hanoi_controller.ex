@@ -35,7 +35,7 @@ defmodule HelloWeb.HanoiController do
     {:ok,result} = Hello.Lua.run_script(formula)
     IO.puts(inspect(result))
 
-    key = [:a,:b,:c,:d,:e,:f,:g,:h]
+    key = [:a,:b,:c,:d,:e,:f,:g,:h,:i,:j,:k,:l,:m,:n,:o,:p,:q,:r,:s,:t,:u,:v,:w,:x,:y,:z]
     ass = Enum.zip(key,result)
 
     IO.puts(inspect(ass))
