@@ -1,34 +1,35 @@
 <section>
  <button onclick="location.reload();">刷新页面</button>
+
   <%= for q <- 0..(length(@questions)-1) do %>
 
-  <div>
-  <%=elem(Enum.at(@questions,q),0) %>
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <!-- button id="myButton">点击查看答案</button -->
-  <% result = elem(Enum.at(@questions,q),1)%>
-  <!-- div id="myDiv">正确答案是 <%= Enum.at(result,length(result)-1) %></div -->
-  <div>
-  <h1></h1>
-  </div>
-   <script text="javascript">
+    <div>
+      <%=elem(Enum.at(@questions,q),0) %>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- button id="myButton">点击查看答案</button -->
+    <% result = elem(Enum.at(@questions,q),1)%>
+    <!-- div id="myDiv">正确答案是 <%= Enum.at(result,length(result)-1) %></div -->
+    <div>
+      <h1></h1>
+    </div>
+    <script text="javascript">
 
-    // 获取div元素
-    var div = document.getElementById("myDiv");
-
-    // 隐藏div元素
-    div.style.display = "none";
-    var btn = document.getElementById("myButton")
-    btn.onclick = function(){
-      console.log('click show')
+      // 获取div元素
       var div = document.getElementById("myDiv");
-      // 显示div元素
-      div.style.display = "block";
-    }
-  </script>
+
+      // 隐藏div元素
+      div.style.display = "none";
+      var btn = document.getElementById("myButton")
+      btn.onclick = function(){
+        console.log('click show')
+        var div = document.getElementById("myDiv");
+        // 显示div元素
+        div.style.display = "block";
+      }
+    </script>
   <% end %>
 </section>

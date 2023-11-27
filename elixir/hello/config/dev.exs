@@ -3,9 +3,9 @@ import Config
 IO.puts("in dev.exs ...")
 # Configure your database
 config :hello, Hello.Repo,
-  username: "root", # "phoenix",
-  password: "123456", #"phoenix",
-  hostname: "127.0.0.1", # "10.1.215.237",
+  username:  "phoenix", # root"
+  password:  "phoenix", # "123456"
+  hostname: "10.1.215.237", # "127.0.0.1"
   database: "hello_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,

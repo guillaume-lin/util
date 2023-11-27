@@ -15,7 +15,7 @@ config :hello,
 
 # Configures the endpoint
 config :hello, HelloWeb.Endpoint,
-  url: [host: "localhost"], #[host: "10.1.215.237"],
+  url: [host: "0.0.0.0"], #[host: "10.1.215.237"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
     formats: [html: HelloWeb.ErrorHTML, json: HelloWeb.ErrorJSON],
