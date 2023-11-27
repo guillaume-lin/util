@@ -23,7 +23,7 @@ defmodule Hello.Question.QuestionTemplateAdmin do
     [
       %{
         type: "tidbit",
-        title: "Average Reviews",
+        title: "average review",
         content: "4.8 /5.0",
         icon: "thumbs-up",
         order: 1,
