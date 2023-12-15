@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: springboot-example
+  profiles:
+    active: dev
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+
