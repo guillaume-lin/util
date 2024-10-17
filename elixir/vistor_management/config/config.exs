@@ -6,23 +6,59 @@
 
 # General application configuration
 import Config
-IO.puts("in config.exs")
 
+config :ash,
+  include_embedded_source_by_default?: false,
+  default_page_type: :keyset,
+  policies: [no_filter_static_forbidden_reads?: false]
 
-config :hello,
-  ecto_repos: [Hello.Repo],
+config :spark,
+  formatter: [
+    remove_parens?: true,
+    "Ash.Resource": [
+      section_order: [
+        :postgres,
+        :resource,
+        :code_interface,
+        :actions,
+        :policies,
+        :pub_sub,
+        :preparations,
+        :changes,
+        :validations,
+        :multitenancy,
+        :attributes,
+        :relationships,
+        :calculations,
+        :aggregates,
+        :identities
+      ]
+    ],
+    "Ash.Domain": [section_order: [:resources, :policies, :authorization, :domain, :execution]]
+  ]
+
+config :vistor_management,
+  ecto_repos: [VistorManagement.Repo],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
-config :hello, HelloWeb.Endpoint,
-  url: [host: "0.0.0.0"], #[host: "10.1.215.237"],
-  adapter: Phoenix.Endpoint.Cowboy2Adapter,
+config :vistor_management, VistorManagementWeb.Endpoint,
+  url: [host: "localhost"],
+  adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: HelloWeb.ErrorHTML, json: HelloWeb.ErrorJSON],
+    formats: [html: VistorManagementWeb.ErrorHTML, json: VistorManagementWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: Hello.PubSub,
-  live_view: [signing_salt: "Qf7wK+y6"]
+  pubsub_server: VistorManagement.PubSub,
+  live_view: [signing_salt: "QUxt3AQG"]
+
+config :vistor_management, :ash_domains, [VistorManagement.Visit]
+config :ash,
+  include_embedded_source_by_default?: false,
+  default_page_type: :keyset
+
+config :ash, :policies,
+  no_filter_static_forbidden_reads?: false 
 
 # Configures the mailer
 #
@@ -31,12 +67,12 @@ config :hello, HelloWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :hello, Hello.Mailer, adapter: Swoosh.Adapters.Local
+config :vistor_management, VistorManagement.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.17.11",
-  default: [
+  vistor_management: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
@@ -45,8 +81,8 @@ config :esbuild,
 
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "3.3.5",
-  default: [
+  version: "3.4.3",
+  vistor_management: [
     args: ~w(
       --config=tailwind.config.js
       --input=css/app.css
@@ -62,28 +98,6 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
-
-#
-# in your config/config.exs
-# config kaffy
-#
-config :kaffy,
-  # required keys
-  otp_app: :hello, # required
-  ecto_repo: Hello.Repo, # required
-  router: HelloWeb.Router, # required
-  # optional keys
-  admin_title: "My Little App",
-  #admin_logo: [
-  #  url: "https://example.com/img/logo.png",
-  #  style: "width:200px;height:66px;"
-  #],
-  #admin_logo_mini: "/images/logo-mini.png",
-  hide_dashboard: false,
-  home_page: [kaffy: :dashboard],  # [schema: [:accounts, :user]],
-  enable_context_dashboards: true, # since v0.10.0
-  admin_footer: "Kaffy &copy; 2023" # since v0.10.0
-
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

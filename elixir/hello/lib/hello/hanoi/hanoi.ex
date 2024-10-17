@@ -25,11 +25,11 @@ defmodule Hello.Hanoi do
     end
 
     def lua() do
-        IO.puts("do lua")
-      st0 = :luerl.init()
-      {:ok, b} = :luerl.eval("return 1 + 1",st0)  # this will return []
+    	IO.puts("do lua")
+      	st0 = :luerl.init()
+      	{:ok, b} = :luerl.eval("return 1 + 1",st0)  # this will return []
 
-      IO.puts(b)
-      {:ok,b}
+      	IO.puts(b)
+      	{:ok,b}
     end
 end
