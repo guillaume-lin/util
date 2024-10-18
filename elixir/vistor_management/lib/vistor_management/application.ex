@@ -17,7 +17,8 @@ defmodule VistorManagement.Application do
       # Start a worker by calling: VistorManagement.Worker.start_link(arg)
       # {VistorManagement.Worker, arg},
       # Start to serve requests, typically the last entry
-      VistorManagementWeb.Endpoint
+      VistorManagementWeb.Endpoint,
+      {AshAuthentication.Supervisor, [otp_app: :vistor_management]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

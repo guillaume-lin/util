@@ -1,4 +1,5 @@
 import Config
+config :vistor_management, token_signing_secret: "D9eQvnpZm2T2eCAjs4FZhmSPsWggaL3w"
 config :ash, disable_async?: true
 
 # Configure your database

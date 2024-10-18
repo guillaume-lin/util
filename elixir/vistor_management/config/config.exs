@@ -17,6 +17,8 @@ config :spark,
     remove_parens?: true,
     "Ash.Resource": [
       section_order: [
+        :authentication,
+        :tokens,
         :postgres,
         :resource,
         :code_interface,
@@ -52,13 +54,13 @@ config :vistor_management, VistorManagementWeb.Endpoint,
   pubsub_server: VistorManagement.PubSub,
   live_view: [signing_salt: "QUxt3AQG"]
 
-config :vistor_management, :ash_domains, [VistorManagement.Visit]
+config :vistor_management, :ash_domains, [VistorManagement.Accounts, VistorManagement.Visit]
+
 config :ash,
   include_embedded_source_by_default?: false,
   default_page_type: :keyset
 
-config :ash, :policies,
-  no_filter_static_forbidden_reads?: false 
+config :ash, :policies, no_filter_static_forbidden_reads?: false
 
 # Configures the mailer
 #

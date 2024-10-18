@@ -63,7 +63,9 @@ config :vistor_management, VistorManagementWeb.Endpoint,
   ]
 
 # Enable dev routes for dashboard and mailbox
-config :vistor_management, dev_routes: true
+config :vistor_management,
+  dev_routes: true,
+  token_signing_secret: "jKffG9AQ3oQAWek/u/je4oz6qpYommoW"
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

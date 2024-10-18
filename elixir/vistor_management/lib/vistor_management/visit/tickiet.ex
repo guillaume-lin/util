@@ -17,11 +17,11 @@ defmodule VistorManagement.Visit.Ticket do
     create :create do
       accept [:status, :name, :phone]
     end
+
     update :approve do
       accept [:status]
-      change set_attribute(:status, :approved)   
+      change set_attribute(:status, :approved)
     end
-    
   end
 
   # Attributes are the simple pieces of data that exist on your resource

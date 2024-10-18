@@ -9,7 +9,8 @@ module.exports = {
   content: [
     "./js/**/*.js",
     "../lib/vistor_management_web.ex",
-    "../lib/vistor_management_web/**/*.*ex"
+    "../lib/vistor_management_web/**/*.*ex",
+    "../deps/ash_authentication_phoenix/**/*.*ex", //
   ],
   theme: {
     extend: {
