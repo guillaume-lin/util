@@ -2,6 +2,7 @@ defmodule VistorManagementWeb.PageController do
   use VistorManagementWeb, :controller
 
   def home(conn, _params) do
+    IO.puts("html home")
     # The home page is often custom made,
     # so skip the default app layout.
     conn

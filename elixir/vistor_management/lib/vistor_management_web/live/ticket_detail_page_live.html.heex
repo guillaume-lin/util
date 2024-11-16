@@ -1,0 +1,21 @@
+<!-- 
+show ticket detail
+user can create, approve,view ticket
+when enter this 
+ -->
+ <div>
+ <.form for={@form} phx-change="validate" phx-submit="save">
+  <.input type="text" class="p-2" field={@form[:username]} />
+  <.input type="email" field={@form[:email]} />
+  <%= case @form.source["action"] do %>
+  <% "create" -> %>
+  <button phx-click="create_ticket"><%= gettext("create")%></button>
+  <% "approve" -> %>
+  <button phx-click="approve_ticket"><%= gettext("approve")%></button>
+  <% _ -> %>
+    <!--do nothing -->
+  <% end %>
+  <%= @live_action %>
+</.form>
+  
+ </div>

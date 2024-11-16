@@ -3,6 +3,8 @@ defmodule VistorManagementWeb.LoginPageLive do
   #use Phoenix.LiveView
   use VistorManagementWeb, :live_view
 
+  on_mount {VistorManagementWeb.LiveUserAuth, :live_user_required}
+
   def render(assigns) do
     IO.puts("render")
     IO.inspect(assigns)
@@ -23,7 +25,7 @@ defmodule VistorManagementWeb.LoginPageLive do
   def handle_event("inc_temperature", _params, socket) do
     alias VistorManagement.Visit
     alias VistorManagement.Approve
-    Approve.approve("1")
+
     IO.puts("event got")
     {:noreply, update(socket, :temperature, &(&1 + 1))}
   end

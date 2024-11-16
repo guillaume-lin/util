@@ -17,12 +17,23 @@ defmodule VistorManagementWeb.Router do
       #
       # If an authenticated user must *not* be present:
       # on_mount {VistorManagementWeb.LiveUserAuth, :live_no_user}
+
+      live "/", TicketListPage
+      live "/ticket/list", TicketListPage
+      live "/ticket/detail", TicketDetailPageLive, :view
+      live "/ticket/create", TicketDetailPageLive, :create
+      live "/ticket/approve", TicketDetailPageLive, :approve
     end
   end
 
   scope "/", VistorManagementWeb do
     pipe_through :browser
-    live "/login", LoginPageLive
+
+    #live "/", TicketListPage
+    #live "/login", LoginPageLive
+    #live "/ticket/list", TicketListPage
+    #live "/ticket/detail", TicketDetailPage
+
     auth_routes AuthController, VistorManagement.Accounts.User, path: "/auth"
     sign_out_route AuthController
 

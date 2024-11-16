@@ -50,4 +50,10 @@ defmodule VistorManagementWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug VistorManagementWeb.Router
+  def myPlug(conn, opts) do
+    IO.puts("myPlug run here")
+    IO.inspect(opts)
+    conn
+  end
+  plug :myPlug
 end

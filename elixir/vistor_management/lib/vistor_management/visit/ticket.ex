@@ -22,6 +22,10 @@ defmodule VistorManagement.Visit.Ticket do
       accept [:status]
       change set_attribute(:status, :approved)
     end
+    update :close do
+      accept [:status]
+      change set_attribute(:status, :closed)
+    end
   end
 
   # Attributes are the simple pieces of data that exist on your resource
@@ -40,13 +44,22 @@ defmodule VistorManagement.Visit.Ticket do
       public? true
     end
 
-    attribute :residentId, :string
+    attribute :resident_id, :string
+
+    attribute :visit_start_date, :datetime
+    
+    attribute :visit_end_date, :datetime
+
     attribute :follower, :integer
 
     attribute :status, :atom do
-      constraints one_of: [:applied, :approved, :closed]
+      constraints one_of: [:applied, :approved, :rejected, :closed ]
       default :applied
       allow_nil? false
     end
+
+    attribute :approve_date, :datetime
+    attribute :create_date, :datetime
+    attribute :update_date, :datetime
   end
 end

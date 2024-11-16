@@ -1,3 +1,7 @@
+#
+#
+#   domain for accounts
+#
 defmodule VistorManagement.Accounts do
   use Ash.Domain
 

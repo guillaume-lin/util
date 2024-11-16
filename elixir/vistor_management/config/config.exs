@@ -7,6 +7,10 @@
 # General application configuration
 import Config
 
+config :vistor_management, VistorManagementWeb.Gettext,
+  locales: ~w(en zh), # 添加你需要的语言
+  default_locale: "en"
+
 config :ash,
   include_embedded_source_by_default?: false,
   default_page_type: :keyset,

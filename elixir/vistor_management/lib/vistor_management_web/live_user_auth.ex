@@ -14,7 +14,11 @@ defmodule VistorManagementWeb.LiveUserAuth do
     end
   end
 
-  def on_mount(:live_user_required, _params, _session, socket) do
+  def on_mount(:live_user_required, params, session, socket) do
+    IO.puts("this live view require user login")
+    IO.inspect(params)
+    IO.inspect(session)
+    IO.inspect(socket)
     if socket.assigns[:current_user] do
       {:cont, socket}
     else
