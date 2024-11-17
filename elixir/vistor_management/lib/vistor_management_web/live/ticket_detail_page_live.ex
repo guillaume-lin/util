@@ -18,7 +18,7 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
     IO.inspect(params)
     # load data from database
 
-    form = to_form(%{"username" => "haha", "email" => "x@xx", "action" => "create"})
+    form = to_form(%{"action" => "create"})
     socket = socket |> assign(:date, "2004")
       |>assign(:form, form)
     IO.inspect(socket)
@@ -40,7 +40,8 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
   def handle_event("create_ticket",params,socket) do
     IO.puts("create_ticket")
     IO.inspect(params)
-    {:noreply, socket}
+    put_flash(socket, :info, "tickert created")
+    {:ok, socket}
   end
   def handle_event("approve_ticket",params,socket) do
     IO.puts("approve_ticket")
