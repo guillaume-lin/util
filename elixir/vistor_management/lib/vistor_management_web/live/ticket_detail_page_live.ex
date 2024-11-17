@@ -7,42 +7,44 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
   #use Phoenix.LiveView
   use VistorManagementWeb, :live_view
 
-  #load ticket detail 
-  def mount(_params, _session, socket) do
-    # Let's assume a fixed temperature for now
-    temperature = 71
-    form = to_form(%{"username" => "haha", "email" => "x@xx", "action" => "approve"})
+  #
+  # load ticket detail
+  #
+  # if ticket_id exists, load the desired ticket
+  # else show a blank ticket for user to create
+  #
+  def mount(params, _session, socket) do
+    IO.puts("mount ticket detail")
+    IO.inspect(params)
+    # load data from database
+
+    form = to_form(%{"username" => "haha", "email" => "x@xx", "action" => "create"})
     socket = socket |> assign(:date, "2004")
       |>assign(:form, form)
     IO.inspect(socket)
-    {:ok, assign(socket, :temperature, temperature)}
+    {:ok, socket}
   end
 
   on_mount {VistorManagementWeb.LiveUserAuth, :live_user_required}
 
   # def render() do
-  # end  
+  # end
 
-  def handle_event("inc_temperature", _params, socket) do
-    alias VistorManagement.Visit
-    IO.puts("event got")
-    {:noreply, update(socket, :temperature, &(&1 + 1))}
-  end
 
-  def handle_event("validate",params,socket) do 
+  def handle_event("validate",params,socket) do
     IO.puts("validate")
     IO.inspect(params)
     {:noreply,socket}
   end
 
-  def handle_event("save",params,socket) do
-    IO.puts("save")
+  def handle_event("create_ticket",params,socket) do
+    IO.puts("create_ticket")
     IO.inspect(params)
     {:noreply, socket}
   end
   def handle_event("approve_ticket",params,socket) do
     IO.puts("approve_ticket")
     IO.inspect(params)
-    {:noreply, socket}
+    {:noreplay, push_redirect(socket, to: "/ticket/list" ) }
   end
 end

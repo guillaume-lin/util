@@ -1,7 +1,7 @@
 #
 #  this page list tickets
 #  if not login, goto sign in page
-#  else show ticket list according by user 
+#  else show ticket list according by user
 #
 defmodule VistorManagementWeb.TicketListPage do
   # In Phoenix v1.6+ apps, the line is typically: use MyAppWeb, :live_view
@@ -21,15 +21,20 @@ defmodule VistorManagementWeb.TicketListPage do
     alias VistorManagement.Visit
     tickets = Visit.list_my_active_tickets()
     IO.inspect(tickets)
-    socket = socket 
+    socket = socket
     |> assign(:tickets, tickets)
     |> assign(:date, "2004")
     {:ok, socket}
   end
 
-  def handle_event("apply_new",params, socket) do  
+  #
+  # when apply new
+  # create a new ticket and goto detail
+  #
+  def handle_event("apply_new",params, socket) do
     IO.inspect(params)
-    {:noreply, push_redirect(socket, to: "/ticket/detail")}
+    #to = Routes.live_path(socket, VistorManagementWeb.TicketDetailPage,)
+    {:noreply, push_redirect(socket, to: "/ticket/create")}
 
   end
   def handle_event("goto_detail", _params, socket) do

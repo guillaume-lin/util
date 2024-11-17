@@ -4,18 +4,23 @@ user can create, approve,view ticket
 when enter this 
  -->
  <div>
- <.form for={@form} phx-change="validate" phx-submit="save">
+ <.form for={@form} phx-change="validate">
+  <label><%= gettext("user") %></label>
   <.input type="text" class="p-2" field={@form[:username]} />
-  <.input type="email" field={@form[:email]} />
+
+  <label><%= gettext("email") %>
+  </label><.input type="email" field={@form[:email]} />
+
+
   <%= case @form.source["action"] do %>
   <% "create" -> %>
   <button phx-click="create_ticket"><%= gettext("create")%></button>
   <% "approve" -> %>
-  <button phx-click="approve_ticket"><%= gettext("approve")%></button>
+  <button phx-click="approve_ticket" class="p-2 border"><%= gettext("approve")%></button>
   <% _ -> %>
     <!--do nothing -->
   <% end %>
-  <%= @live_action %>
+  
 </.form>
   
  </div>

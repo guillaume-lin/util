@@ -1,5 +1,5 @@
 #
-# visit domain / context 
+# visit domain / context
 #
 defmodule VistorManagement.Visit do
   use Ash.Domain
@@ -20,6 +20,15 @@ defmodule VistorManagement.Visit do
 
   end
 
+  #
+  # list ticket by id
+  #
+  def get_one_ticket(ticket_id) do
+      ticket = VistorManagement.Visit.Ticket
+      |> Ash.Query.filter(:id == ticket_id)
+      |> Ash.read!()
+  end
+
   def apply_new_ticket(ticket) do
     IO.puts("apply new ticket")
     ticket = VistorManagement.Visit.Ticket
@@ -28,18 +37,18 @@ defmodule VistorManagement.Visit do
     ticket
   end
 
-  @doc """ 
+  @doc """
     cancel visit
     applicant and approver can do this
   """
   def close_ticket(ticket) do
     IO.puts("close ticket #{ticket.id}: #{ticket.status}")
-    ticket 
+    ticket
     |> Ash.Changeset.for_update(:close,%{})
     |> Ash.update!()
   end
 
-  
+
   @doc """
     approve a ticket
     user need to be have an approve role
@@ -47,7 +56,7 @@ defmodule VistorManagement.Visit do
   def approve_ticket(ticket) do
     IO.puts("approve_ticket #{ticket.id}")
     ticket
-    |> Ash.Changeset.for_update(:approve) 
+    |> Ash.Changeset.for_update(:approve)
     |> Ash.update!()
   end
 

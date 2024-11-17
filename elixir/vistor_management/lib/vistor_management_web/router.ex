@@ -20,12 +20,17 @@ defmodule VistorManagementWeb.Router do
 
       live "/", TicketListPage
       live "/ticket/list", TicketListPage
-      live "/ticket/detail", TicketDetailPageLive, :view
+      live "/ticket/detail/:ticket_id", TicketDetailPageLive, :view
       live "/ticket/create", TicketDetailPageLive, :create
-      live "/ticket/approve", TicketDetailPageLive, :approve
+      live "/ticket/approve/:ticket_id", TicketDetailPageLive, :approve
     end
   end
+  scope "/miniapp", VistorManagementWeb do
+    pipe_through :api
 
+    get "/login", MiniappController, :login
+
+  end
   scope "/", VistorManagementWeb do
     pipe_through :browser
 

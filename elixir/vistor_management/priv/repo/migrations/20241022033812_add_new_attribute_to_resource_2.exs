@@ -1,4 +1,4 @@
-defmodule VistorManagement.Repo.Migrations.AddNewAttributeToResource do
+defmodule VistorManagement.Repo.Migrations.AddNewAttributeToResource2 do
   @moduledoc """
   Updates resources based on their most recent snapshots.
 

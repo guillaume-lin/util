@@ -206,6 +206,10 @@ defmodule VistorManagement.Accounts.User do
       allow_nil? false
       sensitive? true
     end
+    attribute :is_admin, :boolean do
+      allow_nil? true
+      default false
+    end
   end
 
   identities do
