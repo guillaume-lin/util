@@ -20,7 +20,7 @@ defmodule VistorManagementWeb.TicketListPage do
     IO.puts("mount")
     alias VistorManagement.Visit
     tickets = Visit.list_my_active_tickets()
-    
+
     socket = socket
     |> assign(:tickets, tickets)
     |> assign(:date, "2004")
@@ -39,9 +39,9 @@ defmodule VistorManagementWeb.TicketListPage do
   #
   def handle_event("apply_new",params, socket) do
     IO.inspect(params)
-    #to = Routes.live_path(socket, VistorManagementWeb.TicketDetailPage,)
+
     to = unverified_path(socket, VistorManagementWeb.Router,"/ticket/create")
-    
+
     {:noreply, push_redirect(socket, to: to)}
 
   end

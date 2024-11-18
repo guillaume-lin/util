@@ -12,6 +12,7 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
   #
   # if ticket_id exists, load the desired ticket
   # else show a blank ticket for user to create
+  # check action for the detail {:create, :view, :approve}
   #
   def mount(params, _session, socket) do
     IO.puts("mount ticket detail")
@@ -19,7 +20,10 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
     # load data from database
     ticket_id = params["ticket_id"]
     ticket  = VistorManagement.Visit.get_one_ticket(ticket_id)
+
+    IO.inspect(ticket)
     form = to_form(ticket)
+    IO.inspect(form)
     socket = socket |> assign(:date, "2004")
       |>assign(:form, form)
     IO.inspect(socket)
@@ -38,15 +42,24 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
     {:noreply,socket}
   end
 
+  #
+  #  verify user input and save a new ticket
+  #  after save, rediect to ticket list
+  #
   def handle_event("create_ticket",params,socket) do
     IO.puts("create_ticket")
     IO.inspect(params)
-    ticket = %{"name": "new created","phone": "13799780035"}
+    ticket = %{name: "new created", phone: "13799780035"}
     ticket = VistorManagement.Visit.apply_new_ticket(ticket)
     put_flash(socket,:info,"ticket created")
-    to = unverified_path(socket,VistorManagementWeb.Router,"/ticket/detail", ticket_id: ticket.id)
-    {:noreply, socket}
+    to = unverified_path(socket,VistorManagementWeb.Router,"/ticket/list")
+    {:noreply, push_redirect(socket, to: to)}
   end
+
+  #
+  #  approve ticket
+  #  after approve,redirect to ticket list
+  #
   def handle_event("approve_ticket",params,socket) do
     IO.puts("approve_ticket")
     IO.inspect(params)

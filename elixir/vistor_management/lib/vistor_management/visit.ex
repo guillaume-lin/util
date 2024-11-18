@@ -23,12 +23,21 @@ defmodule VistorManagement.Visit do
   #
   # list ticket by id
   #
-  def get_one_ticket(ticket_id) do
+  def get_one_ticket(tid) do
     IO.puts("ash domain get_one_ticket")
-    IO.puts(ticket_id)
+    IO.puts(tid)
     ticket = VistorManagement.Visit.Ticket
-      |> Ash.Query.filter(id == ticket_id)
+      |> Ash.Query.filter( id == ^tid)
+      |> Ash.Query.limit(2)
       |> Ash.read!()
+      |> case do
+        [] -> nil
+        [result] -> result
+        [_,_] -> nil
+      end
+      IO.puts("got")
+      IO.inspect(ticket)
+      ticket
   end
 
   def apply_new_ticket(ticket) do
