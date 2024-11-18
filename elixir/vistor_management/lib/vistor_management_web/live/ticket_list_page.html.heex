@@ -6,13 +6,13 @@
     <div>
     <h2><%= gettext("approved tickets") %></h2>
     <%= for ticket <- @tickets do %>
-        <label phx-click="goto_detail"><%=ticket.name %></label>
+        <label phx-click="goto_detail" phx-value-ticket-id={ticket.id}><%=ticket.name %></label>
     <% end %>
     </div>
     <div>
     <h2><%= gettext("applied tickets")%></h2>
     <%= for ticket <- @tickets do %>
-        <label><%=ticket.name %></label>
+        <label phx-click="goto_detail" phx-value-ticket-id={ticket.id}><%=ticket.name %></label>
     <% end %>
     </div>
 </div>

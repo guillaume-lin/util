@@ -15,7 +15,7 @@ defmodule VistorManagement.Visit do
   def list_my_active_tickets() do
     IO.puts("hi from ash domain")
     tickets = VistorManagement.Visit.Ticket
-    |> Ash.Query.filter(:status != :closed and :phone != "p")
+    |> Ash.Query.filter(status != :closed)
     |> Ash.read!()
 
   end
@@ -24,8 +24,10 @@ defmodule VistorManagement.Visit do
   # list ticket by id
   #
   def get_one_ticket(ticket_id) do
-      ticket = VistorManagement.Visit.Ticket
-      |> Ash.Query.filter(:id == ticket_id)
+    IO.puts("ash domain get_one_ticket")
+    IO.puts(ticket_id)
+    ticket = VistorManagement.Visit.Ticket
+      |> Ash.Query.filter(id == ticket_id)
       |> Ash.read!()
   end
 

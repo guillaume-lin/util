@@ -1,4 +1,5 @@
 defmodule VistorManagementWeb.Router do
+  use Phoenix.Router
   use VistorManagementWeb, :router
   use AshAuthentication.Phoenix.Router
   import Phoenix.LiveView.Router
@@ -20,24 +21,23 @@ defmodule VistorManagementWeb.Router do
 
       live "/", TicketListPage
       live "/ticket/list", TicketListPage
-      live "/ticket/detail/:ticket_id", TicketDetailPageLive, :view
+      live "/ticket/detail", TicketDetailPageLive, :view
       live "/ticket/create", TicketDetailPageLive, :create
-      live "/ticket/approve/:ticket_id", TicketDetailPageLive, :approve
+      live "/ticket/approve", TicketDetailPageLive, :approve
     end
   end
   scope "/miniapp", VistorManagementWeb do
     pipe_through :api
 
-    get "/login", MiniappController, :login
+    post "/login", MiniappController, :login
+    post "/ticket/list", MiniappController, :list_ticket
+    post "/ticket/view", MiniappController, :view_ticket
+    post "/ticket/create", MiniappController, :create_ticket 
+    post "/ticket/approve", MiniappController, :approve_ticket
 
   end
   scope "/", VistorManagementWeb do
     pipe_through :browser
-
-    #live "/", TicketListPage
-    #live "/login", LoginPageLive
-    #live "/ticket/list", TicketListPage
-    #live "/ticket/detail", TicketDetailPage
 
     auth_routes AuthController, VistorManagement.Accounts.User, path: "/auth"
     sign_out_route AuthController
@@ -71,14 +71,6 @@ defmodule VistorManagementWeb.Router do
     plug :load_from_bearer
   end
 
-  scope "/", VistorManagementWeb do
-    pipe_through :browser
-
-    get "/", PageController, :home
-
-    # get "/visitor", VisitorController, :login
-    # get "/visitor/
-  end
 
   # Other scopes may use custom stacks.
   # scope "/api", VistorManagementWeb do

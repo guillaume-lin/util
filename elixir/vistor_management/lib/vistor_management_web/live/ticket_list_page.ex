@@ -20,13 +20,19 @@ defmodule VistorManagementWeb.TicketListPage do
     IO.puts("mount")
     alias VistorManagement.Visit
     tickets = Visit.list_my_active_tickets()
-    IO.inspect(tickets)
+    
     socket = socket
     |> assign(:tickets, tickets)
     |> assign(:date, "2004")
     {:ok, socket}
   end
 
+  def handle_params(params,uri,socket) do
+    IO.puts("ticket list page handle_params")
+    IO.inspect(params)
+    IO.inspect(uri)
+    {:noreply, socket}
+  end
   #
   # when apply new
   # create a new ticket and goto detail
@@ -34,14 +40,18 @@ defmodule VistorManagementWeb.TicketListPage do
   def handle_event("apply_new",params, socket) do
     IO.inspect(params)
     #to = Routes.live_path(socket, VistorManagementWeb.TicketDetailPage,)
-    {:noreply, push_redirect(socket, to: "/ticket/create")}
+    to = unverified_path(socket, VistorManagementWeb.Router,"/ticket/create")
+    
+    {:noreply, push_redirect(socket, to: to)}
 
   end
-  def handle_event("goto_detail", _params, socket) do
+  def handle_event("goto_detail", params, socket) do
     alias VistorManagement.Visit
     alias VistorManagement.Approve
-
-    {:noreply, push_redirect(socket,to: "/ticket/detail")}
+    IO.puts("goto_detail")
+    IO.inspect(params)
+    to = unverified_path(socket, VistorManagementWeb.Router,"/ticket/detail", ticket_id: params["ticket-id"])
+    {:noreply, push_redirect(socket,to: to)}
   end
   def handle_event(_,_params,socket) do
     IO.puts("don't know how to do")
