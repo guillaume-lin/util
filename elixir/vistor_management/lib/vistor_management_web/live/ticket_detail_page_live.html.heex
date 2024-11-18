@@ -12,13 +12,17 @@ when enter this
   </label><.input type="email" field={@form[:email]} />
 
 
-  <%= case @form.source["action"] do %>
-  <% "create" -> %>
+
+
+  <%= case @live_action do %>
+  <% :create -> %>
   <button phx-click="create_ticket"><%= gettext("create")%></button>
-  <% "approve" -> %>
+  <% :approve -> %>
   <button phx-click="approve_ticket" class="p-2 border"><%= gettext("approve")%></button>
+  <% :view -> %>
+  <label>view ticket </label>
   <% _ -> %>
-    <!--do nothing -->
+      <!--do nothing -->
   <% end %>
   
 </.form>
