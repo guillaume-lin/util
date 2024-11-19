@@ -22,21 +22,22 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
     live_action = socket.assigns[:live_action]
     IO.inspect(live_action)
     case live_action do
-      :create -> 
+      :create ->
            socket = create_ticket(params,socket)
       :approve ->
-           approve_ticket(params,socket)
+           socket = approve_ticket(params,socket)
       _ ->
-          # view ticket 
-          view_ticket(params,socket)
-    end 
-
+          # view ticket
+          socket = view_ticket(params,socket)
+    end
+    IO.puts("mount done")
+    IO.inspect(socket)
     {:ok, socket}
   end
 
 
-  #create a ticket 
-  defp create_ticket(params, socket) do 
+  #create a ticket
+  defp create_ticket(params, socket) do
     IO.puts("prepare for create ticket")
     """
     ticket_struct = %{
@@ -52,26 +53,28 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
     """
     form = to_form(%{})
     socket = assign(socket,:form, form)
-    
-  end 
+    IO.inspect(socket)
+    socket
+  end
 
   # show a ticket for user to approve
-  defp approve_ticket(params,socket) do
-
+  defp approve_ticket(_params,socket) do
+    socket
   end
-  # show a ticket 
+  # show a ticket
   defp view_ticket(params, socket) do
     ticket_id = params["ticket_id"]
     ticket = VistorManagement.Visit.get_one_ticket(ticket_id)
 
     #convert to form
-    
+
     #
     #socket = assign(socket,:form, form)
+    socket
   end
 
 
-  
+
   on_mount {VistorManagementWeb.LiveUserAuth, :live_user_required}
 
   # def render() do

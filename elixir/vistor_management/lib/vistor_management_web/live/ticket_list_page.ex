@@ -20,11 +20,11 @@ defmodule VistorManagementWeb.TicketListPage do
     IO.puts("mount")
     alias VistorManagement.Visit
     tickets = Visit.list_my_active_tickets()
-    
+
     socket = socket
     |> assign(:tickets, tickets)
     |> assign(:date, "2004")
-    
+
     IO.inspect(socket)
     {:ok, socket}
   end
@@ -47,14 +47,7 @@ defmodule VistorManagementWeb.TicketListPage do
     {:noreply, push_redirect(socket, to: to)}
 
   end
-  def handle_event("goto_detail", params, socket) do
-    alias VistorManagement.Visit
-    alias VistorManagement.Approve
-    IO.puts("goto_detail")
-    IO.inspect(params)
-    to = unverified_path(socket, VistorManagementWeb.Router,"/ticket/detail", ticket_id: params["ticket-id"])
-    {:noreply, push_redirect(socket,to: to)}
-  end
+
   def handle_event(_,_params,socket) do
     IO.puts("don't know how to do")
     {:noreply, socket}
