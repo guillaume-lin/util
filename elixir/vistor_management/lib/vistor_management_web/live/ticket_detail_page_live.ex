@@ -6,6 +6,7 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
   # In Phoenix v1.6+ apps, the line is typically: use MyAppWeb, :live_view
   #use Phoenix.LiveView
   use VistorManagementWeb, :live_view
+  alias VistorManagement.Visit.Ticket
 
   #
   # load ticket detail
@@ -17,19 +18,60 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
   def mount(params, _session, socket) do
     IO.puts("mount ticket detail")
     IO.inspect(params)
-    # load data from database
-    ticket_id = params["ticket_id"]
-    ticket  = VistorManagement.Visit.get_one_ticket(ticket_id)
-
-    IO.inspect(ticket)
-    form = to_form(ticket)
-    IO.inspect(form)
-    socket = socket |> assign(:date, "2004")
-      |>assign(:form, form)
     IO.inspect(socket)
+    live_action = socket.assigns[:live_action]
+    IO.inspect(live_action)
+    case live_action do
+      :create -> 
+           socket = create_ticket(params,socket)
+      :approve ->
+           approve_ticket(params,socket)
+      _ ->
+          # view ticket 
+          view_ticket(params,socket)
+    end 
+
     {:ok, socket}
   end
 
+
+  #create a ticket 
+  defp create_ticket(params, socket) do 
+    IO.puts("prepare for create ticket")
+    """
+    ticket_struct = %{
+      uid: socket.assigns.current_user.id,
+      name: "xxxx",
+      phone: "12347578910",
+      visit_reason: "visit for sales",
+      visit_start_date: Date.utc_today(),
+      visit_end_date: Date.utc_today(),
+
+    }
+    VistorManagement.Visit.apply_new_ticket(ticket_struct)
+    """
+    form = to_form(%{})
+    socket = assign(socket,:form, form)
+    
+  end 
+
+  # show a ticket for user to approve
+  defp approve_ticket(params,socket) do
+
+  end
+  # show a ticket 
+  defp view_ticket(params, socket) do
+    ticket_id = params["ticket_id"]
+    ticket = VistorManagement.Visit.get_one_ticket(ticket_id)
+
+    #convert to form
+    
+    #
+    #socket = assign(socket,:form, form)
+  end
+
+
+  
   on_mount {VistorManagementWeb.LiveUserAuth, :live_user_required}
 
   # def render() do

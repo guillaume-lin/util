@@ -1,18 +1,25 @@
 <!-- html for ticket list page -->
 <div>
-    <div>
-    <button class="shadow-2" phx-click="apply_new"><%= gettext("apply new") %></button>
+    <div class="border p-2"> <%= @current_user.email %></div>
+    <div class="border">
+    <.link class="border m-2 p-2" href={~p"/ticket/create"}> <%= gettext("apply new") %></.link>
     </div>
+
     <div>
-    <h2><%= gettext("approved tickets") %></h2>
+    <h2 class="border p-2"><%= gettext("approved tickets") %></h2>
     <%= for ticket <- @tickets do %>
-        <label phx-click="goto_detail" phx-value-ticket-id={ticket.id}><%=ticket.name %></label>
+         
+        <.link class="block" href={~p"/ticket/detail?#{[ticket_id: ticket.id]}"}> 
+            <%= ticket.name <> (Date.to_string(ticket.visit_start_date) || "") %></.link>
+        
     <% end %>
     </div>
-    <div>
-    <h2><%= gettext("applied tickets")%></h2>
+
+    <h2 class="border p-2"><%= gettext("applied tickets")%></h2>
+    <div class = "border p-2 bg-blue-100 block">
+    
     <%= for ticket <- @tickets do %>
-        <label phx-click="goto_detail" phx-value-ticket-id={ticket.id}><%=ticket.name %></label>
+        <.link class="border p-2 block" href={~p"/ticket/approve?#{[ticket_id: ticket.id]}"}> <%= ticket.name %></.link>
     <% end %>
     </div>
 </div>

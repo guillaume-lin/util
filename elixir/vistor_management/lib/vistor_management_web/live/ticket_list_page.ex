@@ -20,10 +20,12 @@ defmodule VistorManagementWeb.TicketListPage do
     IO.puts("mount")
     alias VistorManagement.Visit
     tickets = Visit.list_my_active_tickets()
-
+    
     socket = socket
     |> assign(:tickets, tickets)
     |> assign(:date, "2004")
+    
+    IO.inspect(socket)
     {:ok, socket}
   end
 

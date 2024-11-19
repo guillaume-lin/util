@@ -22,8 +22,8 @@ defmodule VistorManagementWeb.Router do
       live "/", TicketListPage
       live "/ticket/list", TicketListPage
       live "/ticket/detail", TicketDetailPageLive, :view
-      live "/ticket/create", TicketDetailPageLive, :create
-      live "/ticket/approve", TicketDetailPageLive, :approve
+      live "/ticket/create", TicketDetailPageLive, :create    # user 
+      live "/ticket/approve", TicketDetailPageLive, :approve  # admin
     end
   end
   scope "/miniapp", VistorManagementWeb do
