@@ -21,26 +21,27 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
     IO.inspect(socket)
     live_action = socket.assigns[:live_action]
     IO.inspect(live_action)
+    newSocket = 
     case live_action do
       :create ->
-           socket = create_ticket(params,socket)
+           create_ticket(params,socket)
       :approve ->
-           socket = approve_ticket(params,socket)
+           approve_ticket(params,socket)
       _ ->
           # view ticket
-          socket = view_ticket(params,socket)
+          view_ticket(params,socket)
     end
     IO.puts("mount done")
-    IO.inspect(socket)
-    {:ok, socket}
+    IO.inspect(newSocket)
+    {:ok, newSocket}
   end
 
 
   #create a ticket
   defp create_ticket(params, socket) do
     IO.puts("prepare for create ticket")
-    """
-    ticket_struct = %{
+    
+    _ticket_struct = %{
       uid: socket.assigns.current_user.id,
       name: "xxxx",
       phone: "12347578910",
@@ -49,9 +50,13 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
       visit_end_date: Date.utc_today(),
 
     }
-    VistorManagement.Visit.apply_new_ticket(ticket_struct)
-    """
-    form = to_form(%{})
+    form =
+    Ticket
+    |> AshPhoenix.Form.for_create(:create, forms: [auto?: true])
+    |> to_form()
+    #VistorManagement.Visit.apply_new_ticket(ticket_struct)
+    
+
     socket = assign(socket,:form, form)
     IO.inspect(socket)
     socket
@@ -67,7 +72,7 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
     ticket = VistorManagement.Visit.get_one_ticket(ticket_id)
 
     #convert to form
-
+    form = to_form(ticket)
     #
     #socket = assign(socket,:form, form)
     socket
@@ -94,6 +99,7 @@ defmodule VistorManagementWeb.TicketDetailPageLive do
   def handle_event("create_ticket",params,socket) do
     IO.puts("create_ticket")
     IO.inspect(params)
+    IO.inspect(socket)
     ticket = %{name: "new created", phone: "13799780035"}
     ticket = VistorManagement.Visit.apply_new_ticket(ticket)
     put_flash(socket,:info,"ticket created")
